@@ -6,24 +6,35 @@ namespace NumberGuess
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
             Random rnd = new Random();
             int num = rnd.Next(1, 100);
             Boolean correct = false;
+            int attempts = 20;
             Console.WriteLine("Try guess the number between 1 and 100");
-            while (!correct)
+            while (!correct || attempts >0)
             {
                 try
                 {
-                    int guess =Convert.ToInt32(Console.In);
+                    
+                    int guess =Convert.ToInt32(Console.ReadLine());
+                    attempts--;
 
                     if (guess == num)
                     {
                         Console.WriteLine("Correct! the number was " + num);
+                        Console.WriteLine("You had "+ attempts + " attempts remaining");
+                        correct = true;
                     }
                     else if (guess < num)
                     {
-                        Console.WriteLine("");
+                        Console.WriteLine("Too low!");
+                        Console.WriteLine(attempts + " attempts remaining");
+                    }
+                    else if (guess > num)
+                    {
+                        Console.WriteLine("Too high!");
+                        Console.WriteLine(attempts + " attempts remaining");
                     }
 
                 }
